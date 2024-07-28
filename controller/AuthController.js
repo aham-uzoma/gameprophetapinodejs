@@ -45,19 +45,24 @@ const handleUserLogIn =async(req, res)=>{
                  'subscribed': subscribed
                 }
             },
-            process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30s'})
+            process.env.ACCESS_TOKEN_SECRET,{expiresIn: '20s'})//30s
         const refreshToken = jwt.sign({'sub': foundUser._id},
-            process.env.REFRESH_TOKEN_SECRET,{expiresIn: '1d'})
+            process.env.REFRESH_TOKEN_SECRET,{expiresIn: '1d'})//1d
 
         //save refreshToken with current user
         foundUser.refreshToken = refreshToken
         const result = await foundUser.save()
 
         //create a secured cookie with refreshToken
-        res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 86400000, secure: true, sameSite: 'None' })//86400000 (24 hours)30000
+
+        // res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 86400000, secure: true, sameSite: 'None' })//86400000 (24 hours)30000
+        
+        //Changing the above cookie storage to LocalStorage because of Googles Thirdparty cookie policy.
+       // localStorage.setItem('jwt', refreshToken)
 
         //Send accessToken to the user Upon LogIn.
-        res.json({accessToken})//username, roles,favouriteTeam
+       // res.json({refreshToken})
+        res.json({accessToken,refreshToken})//username, roles,favouriteTeam
 
     }
 }

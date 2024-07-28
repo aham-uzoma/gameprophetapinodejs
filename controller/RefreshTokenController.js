@@ -1,16 +1,32 @@
 const User = require('../model/User')
 const jwt = require('jsonwebtoken')
 
+//communicates with verifyJWT middleware anytime req is 
+//interrupted to check user authorization status
 
 const handleRefreshToken = async (req, res) =>{
-    // console.log('req', req)
+    console.log('REQQQ', req)
 
-    const cookies = req.cookies
+   // const refreshToken = req.body.refreshToken
+    console.log('Req.Body', req.body)
+    const authHeader = req.headers.authorization || req.headers.Authorization
+    if(!authHeader?.startsWith('Bearer ')) return res.sendStatus(401) //Unauthorized
+    const refreshToken = authHeader.split(' ')[1]
+    console.log('ReFRESSSH', refreshToken)
+   // console.log('Req.Body', req.body)
 
-    if(!cookies.jwt){
+       if(!refreshToken){
         return res.sendStatus(401)//unauthorized jwt
     }
-    const refreshToken = cookies.jwt
+
+
+    // const cookies = req.cookies
+    // //Changing the above cookie storage to LocalStorage because of Googles Thirdparty cookie policy.
+
+    // if(!cookies.jwt){
+    //     return res.sendStatus(401)//unauthorized jwt
+    // }
+    // const refreshToken = cookies.jwt
 
     const foundUser2 = await User.findOne({refreshToken}).exec()
 
