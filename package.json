@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@paystack/paystack-sdk": "^1.0.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -19,7 +20,9 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "paystack": "^2.0.1",
+    "paystack-api": "^2.0.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

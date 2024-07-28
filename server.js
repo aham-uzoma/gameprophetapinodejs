@@ -52,6 +52,27 @@ app.use('/emailVerify', require('./routes/UserRoutes'))
 
 app.use('/getCount', require('./routes/UserRoutes'))
 
+
+app.use('/getAllPlans', require('./routes/PaymentsRoutes'))
+
+app.use('/initializeSubscription', require('./routes/PaymentsRoutes'))
+
+app.use('/createSubscriptions', require('./routes/PaymentsRoutes'))
+
+app.use('/getSubscriptions', require('./routes/PaymentsRoutes'))
+
+app.use('/updatePaymentMethod', require('./routes/PaymentsRoutes'))
+
+app.use('/webhooks', require('./routes/PaymentsRoutes'))
+
+app.use('/cancelSubscription', require('./routes/PaymentsRoutes'))
+
+app.use('/createCustomer', require('./routes/PaymentsRoutes'))
+
+app.use('/verifyUserSub', require('./routes/UserRoutes'))
+
+// app.use('/updateUserSubscriptionStatus', require('./routes/PaymentsRoutes'))
+
 app.use(verifyJWT)
 
 app.use('/createNewPrediction', require('./routes/PredictableRoutes'))

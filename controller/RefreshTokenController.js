@@ -35,6 +35,7 @@ const handleRefreshToken = async (req, res) =>{
       const username = foundUser2.username
       const favouriteTeam = foundUser2.favouriteTeam
       const isVerified = foundUser2?.isVerified
+      const subscribed = foundUser2?.subscribed
       console.log('foundUserEmail:',email)
 
       const accessToken = jwt.sign(
@@ -46,6 +47,7 @@ const handleRefreshToken = async (req, res) =>{
           'username': username,
           'favouriteTeam': favouriteTeam,
           'isVerified': isVerified,
+          'subscribed': subscribed
           }
           },
         process.env.ACCESS_TOKEN_SECRET,

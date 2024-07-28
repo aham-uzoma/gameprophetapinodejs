@@ -47,6 +47,10 @@ const userSchema = new mongoose.Schema(
         emailToken:{
             type:String,
         },
+        subscribed:{
+            type:Boolean,
+            default: false,
+        },
         refreshToken: String
     },
     {

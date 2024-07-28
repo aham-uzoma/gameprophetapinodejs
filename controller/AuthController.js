@@ -31,6 +31,7 @@ const handleUserLogIn =async(req, res)=>{
         const email = foundUser.email
         const isVerified = foundUser?.isVerified
         const emailToken = foundUser?.emailToken
+        const subscribed = foundUser?.subscribed
 
         const accessToken = jwt.sign(
             { 'UserInfo':
@@ -41,6 +42,7 @@ const handleUserLogIn =async(req, res)=>{
                  'email': email,
                  'favouriteTeam':favouriteTeam,
                  'isVerified': isVerified,
+                 'subscribed': subscribed
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,{expiresIn: '30s'})

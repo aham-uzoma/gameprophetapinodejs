@@ -141,10 +141,39 @@ const verifyEmail = async (req, res) =>{
   }
 }
 
+const verifySubscription =async(req, res) =>{
+  try {
+    
+    const {email, subscribed} = req.body//userID,
+    console.log('email', email)
+    console.log('subscribed', subscribed)
+
+    if(!email) return res.status(404).json('email not found...')
+      if(!subscribed) return res.status(404).json('subscription status not found...')
+    const user = await User.findOne({email})
+
+    if(user){
+      user.subscribed = subscribed
+
+      await user.save()
+
+      res.status(200).json({
+        email:user.email,
+        subscribed:user?.subscribed
+      })
+  } else res.status(404).json('User not found!!!') 
+
+}catch(error){
+  console.log(error)
+  res.status(500).json(error.message)
+}
+}
+
 module.exports={
     createNewUser,
     createComments,
     getAllComments,
     verifyEmail,
-    getUserCount
+    getUserCount,
+    verifySubscription
 }

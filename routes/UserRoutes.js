@@ -12,6 +12,7 @@ router.route('/verifyMail')
       .post(userController.verifyEmail)
 router.route('/userCount')
       .get(userController.getUserCount)
-
+router.route('/verifySubs')
+      .post(userController.verifySubscription)
       
 module.exports = router
